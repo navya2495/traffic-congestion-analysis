@@ -1,0 +1,214 @@
+/* styles.css */
+
+/* Reset some default styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background: #f9fafb;
+    color: #333;
+    padding: 20px;
+    max-width: 1100px;
+    margin: auto;
+  }
+  
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #007acc;
+  }
+  
+  header h1 {
+    font-size: 2.8rem;
+    color: #007acc;
+    margin-bottom: 10px;
+  }
+  
+  header p {
+    font-size: 1.1rem;
+    color: #555;
+    font-weight: 600;
+  }
+  
+  section {
+    margin-bottom: 50px;
+    background: white;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  }
+  
+  section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #005ea2;
+    border-left: 6px solid #007acc;
+    padding-left: 12px;
+  }
+  
+  .intro p {
+    font-size: 1.15rem;
+    margin-bottom: 20px;
+    color: #444;
+  }
+  
+  ul {
+    list-style-type: disc;
+    padding-left: 25px;
+    margin-bottom: 20px;
+    color: #444;
+  }
+  
+  ul li {
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+  }
+  
+  .full-width {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  }
+  
+  .half-width {
+    width: 48%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  }
+  
+  .image-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .image-row img {
+    flex: 1 1 48%;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    margin-top: 15px;
+    object-fit: cover;
+  }
+  
+  .team ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .team ul li {
+    background: #e0f0ff;
+    margin-bottom: 12px;
+    padding: 12px 18px;
+    border-radius: 6px;
+    font-weight: 600;
+    color: #005ea2;
+    box-shadow: inset 0 0 6px rgba(0, 126, 204, 0.2);
+  }
+  
+  footer {
+    text-align: center;
+    padding: 20px 0;
+    color: #777;
+    font-size: 0.9rem;
+    border-top: 1px solid #ddd;
+    margin-top: 40px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .half-width, .image-row img {
+      width: 100%;
+    }
+  
+    .image-row {
+      flex-direction: column;
+    }
+  
+    body {
+      padding: 15px;
+    }
+  
+    section {
+      padding: 25px 20px;
+    }
+  }
+/* Smaller image size */
+.full-width {
+  width: 70%;       /* Adjust from 100% to 70% (or any %) */
+  max-width: 600px; /* Max width so it doesn't get too big */
+  height: auto;
+  border-radius: 8px;
+  margin-top: 15px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+
+  /* Animation */
+  animation: fadeInZoom 1.5s ease forwards;
+  opacity: 0; /* Start invisible for fade-in */
+}
+
+/* Keyframes for fade in + zoom */
+@keyframes fadeInZoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.image-container {
+  width: 80%;
+  max-width: 800px;
+  text-align: center;
+}
+
+.flowchart-image {
+  width: 100%;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeSlideUp 2s ease-out forwards;
+}
+
+@keyframes fadeSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.eda-section {
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
+.eda-section h2, .eda-section h3 {
+  color: #333;
+}
+
+.eda-images {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.eda-images img {
+  width: 48%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+

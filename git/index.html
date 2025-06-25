@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NYC Taxi Congestion Analysis</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Impact of Traffic Congestion on NYC Taxi Trips</h1>
+    <p><strong>Team:</strong> Jaladurgam Navya</p>
+  </header>
+
+  <section class="intro">
+    <h2>Project Overview</h2>
+    <p>This project investigates how traffic congestion affects taxi trip durations and fares across New York City. It also explores spatial and temporal variations in congestion and applies various modeling techniques for prediction.</p>
+    <img src="images/2.jpg" alt="NYC Map with Congestion" class="full-width"/>
+  </section>
+
+  <section class="methods">
+    <h2>Methodology</h2>
+    <ul>
+      <li>Data Cleaning & Preprocessing</li>
+      <li>Descriptive, Spatial, and Temporal Analysis</li>
+      <li>Regression & Machine Learning (Random Forest, Decision Tree, Linear Regression)</li>
+      <li>Visualization with charts and maps</li>
+      <li>Model Evaluation using MSE, MAE, R²</li>
+    </ul>
+    <div class="image-container">
+    <img src="generated_image.png" alt="Methodology Flowchart" class="half-width"/>
+    </div>
+  </section>
+  <section>
+    <h2>Data Preprocessing</h2>
+    <ul>
+      <li>Converted pickup and dropoff columns to datetime</li>
+      <li>No duplicate rows</li>
+      <li>Negative values handled using absolute conversion</li>
+      <li>Missing values imputed using mode</li>
+      <li>Label encoding applied to store_and_fwd_flag</li>
+      <li>Excluded RatecodeID = 99 (not in data description)</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Descriptive Statistics</h2>
+    <h3>Spatial Analysis</h3>
+    <ul>
+      <li>Average trip durations and fares by neighborhood</li>
+      <li>Computed for both pickup and dropoff areas</li>
+    </ul>
+    <h3>Temporal Analysis</h3>
+    <ul>
+      <li>Hourly variations in congestion levels</li>
+      <li>Derived from pickup hour and day of week</li>
+    </ul>
+  </section>
+  <section class="eda-section">
+    <h2>Exploratory Data Analysis</h2>
+  
+    <h3>Spatial Analysis</h3>
+    <p>The neighborhood with the highest average trip duration. This graph highlights the neighborhoods that tend to have longer ride durations on average, which could be influenced by factors such as their distance from popular destinations, traffic patterns.
+
+        Average fare for pick ups in different neighborhoods.
+        .</p>
+  
+    <h3>Temporal Analysis</h3>
+    <p>Hourly Trip Duration:
+        The trip duration peaks around 8-9 AM, indicating that taxi trips during the morning hours tend to take longer
+        Hourly Total Fare:
+        The total fare peaks around 7-8 AM, indicating that taxi trips during the early morning hours they are charging more
+        Hourly Congestion Surcharge:
+        The congestion surcharge exhibits a distinct peak around 9-10 AM
+        </p>
+    <div class="eda-images">
+      <img src="images/t.png" alt="Hourly Trip Duration" />
+      <img src="images/h.png" alt="Hourly Total Fare" />
+    </div>
+  
+    <ul>
+      <li>Peak trip duration: 8–9 AM</li>
+      <li>Peak fare: 7–8 AM</li>
+      <li>Peak congestion surcharge: 9–10 AM</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Congestion Impact on Neighborhoods</h2>
+    <ul>
+      <li>New feature created using congestion surcharge and neighborhood info</li>
+      <li>Average trip duration and fare calculated per combo</li>
+      <li>Shows areas most impacted by congestion</li>
+      <p>Analysis of neighborhoods based on the average trip duration and total fare,  a newly created feature that combines congestion surcharge and neighborhood information.
+
+        For each unique combination of congestion surcharge and neighborhood, the code calculates the mean of 'trip_duration' and 'total_fare' columns.
+        </p>
+      <div class="eda-images">
+        <img src="images/c.png" alt="congestion" />
+        
+      </div>
+    </ul>
+  </section>
+  <section>
+    <h2>Correlation with Congestion Surcharge</h2>
+    <ul>
+      <li>Trip duration and distance: Little to no correlation</li>
+      <li>Total fare: Moderate positive correlation</li>
+      <p>Trip duration and trip distance have very little to no relationship with congestion surcharge.
+        Total fare has a moderate positive relationship with congestion surcharge, suggesting that higher fares may be associated with slightly higher congestion surcharges, but the correlation is not very strong.
+        </p>
+        <div class="eda-images">
+            <img src="images/cor.png" alt="congestion" />
+            
+          </div>
+    </ul>
+  </section>
+  <section>
+    <h2>Feature Selection</h2>
+    <p>Used Recursive Feature Elimination (RFE) with Ridge Regression to rank feature importance.</p>
+    <div class="eda-images">
+        <img src="images/f.png" alt="congestion" />
+        
+      </div>
+  </section>
+  <section>
+    <h2>Modeling & Metrics</h2>
+    <h3>Linear Regression</h3>
+    <ul>
+      <li>High MSE and MAE</li>
+      <li>Weak R² score</li>
+      <p>MSE :Higher values indicate lower performance
+        R- squared:Indicating a weak level of explanatory power.
+        MAE:Higher values indicate lower accuracy.
+        </p>
+    </ul>
+  
+    <h3>Decision Tree Regression</h3>
+    <ul>
+      <li>MSE: Low</li>
+      <li>R²: 0.32</li>
+      <li>MAE: Low</li>
+      <p>MSE :Lower values indicate better performance
+        An R-squared of 0.32 means that 32% of the variance in the fare amount is explained by the model.​
+        MAE:Lower values indicate better accuracy
+        </p>
+    </ul>
+  
+    <h3>Random Forest Regression</h3>
+    <ul>
+      <li>Best performance overall</li>
+      <li>Lowest error, highest R²</li>
+      <p>MSE:Lower values indicate better performance.​
+        R-squared:Indicating a moderate level of explanatory power.​
+        MAE:Lower values indicate better accuracy.​
+        The Random Forest Regression model is performing​
+             the best among the three models based on the provided​
+             metrics. It offers the lowest errors and the highest ​
+             explanatory power.
+        </p>
+    </ul>
+    <div class="eda-images">
+        <img src="images/m.png" alt="congestion" />
+        
+      </div>
+  </section>
+  
+  <section>
+    <h2>Predicted vs Actual Values</h2>
+    <p>Compared predictions from all three models against actual values based on congestion and neighborhood. Random Forest showed the best fit.</p>
+    <div class="eda-images">
+        <img src="images/p.png" alt="congestion" />
+        
+      </div>
+  </section>
+  <section>
+    <h2>Conclusion</h2>
+    <ul>
+      <li>High congestion neighborhoods: 82, 182, 18, 153, 191, 9, 31</li>
+      <li>These areas showed longer trip durations and higher fares</li>
+      <li>Random Forest provided the most accurate predictions</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Future Improvements</h2>
+    <ul>
+      <li>Include detailed street-level congestion data</li>
+      <li>Use traffic app data or city traffic management records</li>
+      <li>Helps identify specific streets or zones affected by traffic jams</li>
+    </ul>
+  </section>
+            
+      
+  
+
+  <section class="results">
+    <h2>Key Results</h2>
+    <ul>
+      <li>Random Forest model outperformed others with the lowest prediction error.</li>
+      <li>High-congestion areas showed significantly longer durations and higher fares.</li>
+      <li>Temporal analysis revealed peak hours with higher congestion surcharges.</li>
+    </ul>
+    
+  </section>
+
+  <section class="implementation">
+    <h2>Real-World Applications</h2>
+    <ul>
+      <li>Optimized routing for taxi companies</li>
+      <li>Congestion-aware fare estimation for passengers</li>
+      <li>Policy planning for city traffic management</li>
+      <li>Environmental impact studies through traffic simulation</li>
+    </ul>
+    
+  </section>
+
+  
+
+  <footer>
+    <p>Data Source: NYC Green Taxi Dataset</p>
+    <p>© 2024 Data Science Project</p>
+  </footer>
+</body>
+</html>
